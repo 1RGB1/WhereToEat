@@ -10,10 +10,18 @@
 		2955FDCECB7F5083F04442EB /* Pods_WhereToEat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B49EC6058C937D091FBFA65 /* Pods_WhereToEat.framework */; };
 		E031A57A234F4B3800061B41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A579234F4B3800061B41 /* AppDelegate.swift */; };
 		E031A57C234F4B3800061B41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A57B234F4B3800061B41 /* SceneDelegate.swift */; };
-		E031A57E234F4B3800061B41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A57D234F4B3800061B41 /* ViewController.swift */; };
+		E031A57E234F4B3800061B41 /* SuggestLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A57D234F4B3800061B41 /* SuggestLocationViewController.swift */; };
 		E031A581234F4B3800061B41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E031A57F234F4B3800061B41 /* Main.storyboard */; };
 		E031A583234F4B3900061B41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E031A582234F4B3900061B41 /* Assets.xcassets */; };
 		E031A586234F4B3900061B41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E031A584234F4B3900061B41 /* LaunchScreen.storyboard */; };
+		E031A594234F62D700061B41 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A593234F62D700061B41 /* Constants.swift */; };
+		E031A5A1234F64EF00061B41 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E031A5A0234F64EF00061B41 /* Default-568h@2x.png */; };
+		E031A5A3234F663800061B41 /* SuggestLocationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A5A2234F663800061B41 /* SuggestLocationPresenter.swift */; };
+		E031A5A5234F668A00061B41 /* SuggestLocationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A5A4234F668A00061B41 /* SuggestLocationRouter.swift */; };
+		E031A5A7234F669600061B41 /* SuggestLocationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A5A6234F669600061B41 /* SuggestLocationInteractor.swift */; };
+		E031A5A9234F66BB00061B41 /* SuggestLocationEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A5A8234F66BB00061B41 /* SuggestLocationEntity.swift */; };
+		E031A5AB234F66C600061B41 /* SuggestLocationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A5AA234F66C600061B41 /* SuggestLocationProtocol.swift */; };
+		E031A5AD234F702700061B41 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A5AC234F702700061B41 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,11 +31,22 @@
 		E031A576234F4B3800061B41 /* WhereToEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereToEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E031A579234F4B3800061B41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E031A57B234F4B3800061B41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E031A57D234F4B3800061B41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E031A57D234F4B3800061B41 /* SuggestLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestLocationViewController.swift; sourceTree = "<group>"; };
 		E031A580234F4B3800061B41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E031A582234F4B3900061B41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E031A585234F4B3900061B41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E031A587234F4B3900061B41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E031A593234F62D700061B41 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E031A595234F633D00061B41 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E031A596234F633D00061B41 /* Lottie.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Lottie.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E031A597234F633D00061B41 /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E031A5A0234F64EF00061B41 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E031A5A2234F663800061B41 /* SuggestLocationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestLocationPresenter.swift; sourceTree = "<group>"; };
+		E031A5A4234F668A00061B41 /* SuggestLocationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestLocationRouter.swift; sourceTree = "<group>"; };
+		E031A5A6234F669600061B41 /* SuggestLocationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestLocationInteractor.swift; sourceTree = "<group>"; };
+		E031A5A8234F66BB00061B41 /* SuggestLocationEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestLocationEntity.swift; sourceTree = "<group>"; };
+		E031A5AA234F66C600061B41 /* SuggestLocationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestLocationProtocol.swift; sourceTree = "<group>"; };
+		E031A5AC234F702700061B41 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +73,9 @@
 		AAA3DAA071F3095D99C62AA3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E031A595234F633D00061B41 /* Alamofire.framework */,
+				E031A596234F633D00061B41 /* Lottie.framework */,
+				E031A597234F633D00061B41 /* ObjectMapper.framework */,
 				3B49EC6058C937D091FBFA65 /* Pods_WhereToEat.framework */,
 			);
 			name = Frameworks;
@@ -80,9 +102,9 @@
 		E031A578234F4B3800061B41 /* WhereToEat */ = {
 			isa = PBXGroup;
 			children = (
+				E031A59F234F638400061B41 /* SuggestLocation */,
+				E031A58F234F54A300061B41 /* Main UI */,
 				E031A590234F5E6800061B41 /* Util */,
-				E031A57D234F4B3800061B41 /* ViewController.swift */,
-				E031A58F234F54A300061B41 /* Main Screen */,
 				E031A58E234F548E00061B41 /* Resources */,
 				E031A58D234F540100061B41 /* Supporting Files */,
 			);
@@ -102,25 +124,41 @@
 		E031A58E234F548E00061B41 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E031A5A0234F64EF00061B41 /* Default-568h@2x.png */,
 				E031A582234F4B3900061B41 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		E031A58F234F54A300061B41 /* Main Screen */ = {
+		E031A58F234F54A300061B41 /* Main UI */ = {
 			isa = PBXGroup;
 			children = (
 				E031A57F234F4B3800061B41 /* Main.storyboard */,
 				E031A584234F4B3900061B41 /* LaunchScreen.storyboard */,
 			);
-			path = "Main Screen";
+			path = "Main UI";
 			sourceTree = "<group>";
 		};
 		E031A590234F5E6800061B41 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				E031A593234F62D700061B41 /* Constants.swift */,
+				E031A5AC234F702700061B41 /* NetworkManager.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		E031A59F234F638400061B41 /* SuggestLocation */ = {
+			isa = PBXGroup;
+			children = (
+				E031A5A8234F66BB00061B41 /* SuggestLocationEntity.swift */,
+				E031A57D234F4B3800061B41 /* SuggestLocationViewController.swift */,
+				E031A5A2234F663800061B41 /* SuggestLocationPresenter.swift */,
+				E031A5A4234F668A00061B41 /* SuggestLocationRouter.swift */,
+				E031A5A6234F669600061B41 /* SuggestLocationInteractor.swift */,
+				E031A5AA234F66C600061B41 /* SuggestLocationProtocol.swift */,
+			);
+			path = SuggestLocation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -184,6 +222,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E031A586234F4B3900061B41 /* LaunchScreen.storyboard in Resources */,
+				E031A5A1234F64EF00061B41 /* Default-568h@2x.png in Resources */,
 				E031A583234F4B3900061B41 /* Assets.xcassets in Resources */,
 				E031A581234F4B3800061B41 /* Main.storyboard in Resources */,
 			);
@@ -239,9 +278,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E031A57E234F4B3800061B41 /* ViewController.swift in Sources */,
+				E031A5A5234F668A00061B41 /* SuggestLocationRouter.swift in Sources */,
+				E031A5A3234F663800061B41 /* SuggestLocationPresenter.swift in Sources */,
+				E031A5AD234F702700061B41 /* NetworkManager.swift in Sources */,
+				E031A57E234F4B3800061B41 /* SuggestLocationViewController.swift in Sources */,
+				E031A5A7234F669600061B41 /* SuggestLocationInteractor.swift in Sources */,
 				E031A57A234F4B3800061B41 /* AppDelegate.swift in Sources */,
+				E031A5AB234F66C600061B41 /* SuggestLocationProtocol.swift in Sources */,
 				E031A57C234F4B3800061B41 /* SceneDelegate.swift in Sources */,
+				E031A5A9234F66BB00061B41 /* SuggestLocationEntity.swift in Sources */,
+				E031A594234F62D700061B41 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +435,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4B6HF4627C;
-				INFOPLIST_FILE = WhereToEat/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WhereToEat/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -410,7 +456,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4B6HF4627C;
-				INFOPLIST_FILE = WhereToEat/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/WhereToEat/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
