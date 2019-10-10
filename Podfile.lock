@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.7.3)
+  - lottie-ios (2.5.2)
+  - ObjectMapper (3.3.0)
+
+DEPENDENCIES:
+  - Alamofire
+  - lottie-ios
+  - ObjectMapper
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - lottie-ios
+    - ObjectMapper
+
+SPEC CHECKSUMS:
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  lottie-ios: 3fef45d3fabe63e3c7c2eb603dd64ddfffc73062
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
+
+PODFILE CHECKSUM: efda58e6d0b932f76bc65e2a39a76aafb483fbda
+
+COCOAPODS: 1.5.2
