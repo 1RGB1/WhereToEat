@@ -18,4 +18,9 @@ let GET: HTTPMethod = HTTPMethod.get
 // Others
 let FAILED: String = "Failed"
 let ERROR: String = "Error"
-let ACCESSDENIED: String = "Access to your location is needed"
+let ACCESS_DENIED: String = "Access to your location is needed"
+
+enum AnimationDirection {
+    case animateIn
+    case animateOut
+}

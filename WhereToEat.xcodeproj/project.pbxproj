@@ -22,6 +22,7 @@
 		E031A5AB234F66C600061B41 /* SuggestLocationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A5AA234F66C600061B41 /* SuggestLocationProtocol.swift */; };
 		E031A5AD234F702700061B41 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A5AC234F702700061B41 /* NetworkManager.swift */; };
 		E09D04F123516BDA004771C4 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09D04F023516BDA004771C4 /* Utilities.swift */; };
+		E09D04F823523BC4004771C4 /* ColoredDotsWaveLoading.json in Resources */ = {isa = PBXBuildFile; fileRef = E09D04F423523BC3004771C4 /* ColoredDotsWaveLoading.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		E031A5AA234F66C600061B41 /* SuggestLocationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestLocationProtocol.swift; sourceTree = "<group>"; };
 		E031A5AC234F702700061B41 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		E09D04F023516BDA004771C4 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		E09D04F423523BC3004771C4 /* ColoredDotsWaveLoading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ColoredDotsWaveLoading.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 		E031A58E234F548E00061B41 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E09D04F423523BC3004771C4 /* ColoredDotsWaveLoading.json */,
 				E031A5A0234F64EF00061B41 /* Default-568h@2x.png */,
 				E031A582234F4B3900061B41 /* Assets.xcassets */,
 			);
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E031A586234F4B3900061B41 /* LaunchScreen.storyboard in Resources */,
+				E09D04F823523BC4004771C4 /* ColoredDotsWaveLoading.json in Resources */,
 				E031A5A1234F64EF00061B41 /* Default-568h@2x.png in Resources */,
 				E031A583234F4B3900061B41 /* Assets.xcassets in Resources */,
 				E031A581234F4B3800061B41 /* Main.storyboard in Resources */,
@@ -237,20 +241,22 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-WhereToEat/Pods-WhereToEat-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WhereToEat/Pods-WhereToEat-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WhereToEat/Pods-WhereToEat-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WhereToEat/Pods-WhereToEat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		B0A077C2F9946AD7D41D7521 /* [CP] Check Pods Manifest.lock */ = {

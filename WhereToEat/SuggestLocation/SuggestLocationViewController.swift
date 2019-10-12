@@ -8,11 +8,29 @@
 
 import UIKit
 import MapKit
+import Lottie
+import SnapKit
 
 class SuggestLocationViewController : UIViewController {
 
     // MARK: - Outlets -
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var detailsView: UIView!
+    @IBOutlet weak var detailsLabel: UILabel!
+    @IBOutlet weak var blurryView: UIView!
+    @IBOutlet weak var onBoardingView: UIView!
+    @IBOutlet weak var appImageView: UIImageView!
+    @IBOutlet weak var appNameLabel: UILabel!
+    @IBOutlet weak var suggestButton: UIButton!
+    
+    @IBOutlet weak var detailsViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var onBoardingViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var onBoardingViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var blurryViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var blurryViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var appImageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var appImageWidthConstraint: NSLayoutConstraint!
+    
     
     // MARK: - Local Variable -
     var suggestLocationPresenter: SuggestLocationPresenterProtocol?
@@ -21,32 +39,66 @@ class SuggestLocationViewController : UIViewController {
     var userLatitude: Double = 0.0
     var userLongitude: Double = 0.0
     var isCenteredForTheFirstTime = false
+    var lotAnimationView: LOTAnimationView?
     
     // MARK: Functions: - Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initUI()
         checkLocationServices()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     // MARK: Functions: - Locals
+    func initUI() {
+        suggestButton.layer.cornerRadius = 20
+        detailsViewHeightConstraint.constant = 0
+        
+        onBoardingView.translatesAutoresizingMaskIntoConstraints = false
+        blurryView.translatesAutoresizingMaskIntoConstraints = false
+        
+        lotAnimationView = LOTAnimationView(name: "ColoredDotsWaveLoading")
+    }
+    
+    func showLottieAnimation(_ show: Bool) {
+        if let animationView = lotAnimationView {
+            if show {
+                animationView.contentMode = .scaleAspectFit
+                suggestButton.addSubview(animationView)
+                
+                animationView.snp.makeConstraints { (make) in
+                    make.centerY.equalTo(suggestButton.snp.centerY)
+                    make.top.bottom.leading.trailing.equalToSuperview()
+                }
+                
+                animationView.loopAnimation = true
+                animationView.animationSpeed = 0.5
+                animationView.play()
+                
+                animationView.isHidden = false
+                suggestButton.setTitle("", for: .normal)
+            } else {
+                animationView.isHidden = true
+                suggestButton.setTitle("Suggest", for: .normal)
+            }
+        }
+    }
+    
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             checkLocationAuthorization()
         } else {
-            Utilities.showAlertForView(self, title: ERROR, message: ACCESSDENIED)
+            Utilities.showAlertForView(self, title: ERROR, message: ACCESS_DENIED)
         }
     }
     
@@ -62,11 +114,11 @@ class SuggestLocationViewController : UIViewController {
             break
             
             case .denied:
-                Utilities.showAlertForView(self, title: ERROR, message: ACCESSDENIED)
+                Utilities.showAlertForView(self, title: ERROR, message: ACCESS_DENIED)
             break
             
             case .restricted:
-                Utilities.showAlertForView(self, title: ERROR, message: ACCESSDENIED)
+                Utilities.showAlertForView(self, title: ERROR, message: ACCESS_DENIED)
             break
             
             case .notDetermined:
@@ -127,6 +179,35 @@ class SuggestLocationViewController : UIViewController {
         mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100), animated: true)
     }
     
+    func startAnimatingViews(_ direction: AnimationDirection) {
+        
+        if direction == .animateIn {
+            detailsView.isHidden = false
+            detailsViewHeightConstraint.constant = 200
+            
+            blurryViewBottomConstraint.isActive = false
+            onBoardingViewBottomConstraint.isActive = false
+            
+            UIView.animate(withDuration: 1.0) { [weak self] in
+                self?.blurryViewHeightConstraint.constant = 90
+                self?.onBoardingViewHeightConstraint.constant = 90
+                self?.view.layoutIfNeeded()
+            }
+        } else {
+            detailsView.isHidden = true
+            detailsViewHeightConstraint.constant = 0
+            
+            blurryViewBottomConstraint.isActive = true
+            onBoardingViewBottomConstraint.isActive = true
+            
+            UIView.animate(withDuration: 1.0) { [weak self] in
+                self?.blurryViewHeightConstraint.constant = UIScreen.main.bounds.height
+                self?.onBoardingViewHeightConstraint.constant = UIScreen.main.bounds.height
+                self?.view.layoutIfNeeded()
+            }
+        }
+    }
+    
     // MARK: Functions: - Outlets -
     @IBAction func suggetLocationButtonPressed(_ sender: Any) {
         suggestLocationPresenter?.getRandomLoctationWith(longitude: "\(userLatitude)", andLatitude: "\(userLongitude)")
@@ -137,7 +218,10 @@ class SuggestLocationViewController : UIViewController {
 extension SuggestLocationViewController : SuggestLocationViewProtocol {
     func setRandomLocationModel(_ model: SuggestLocationEntity) {
         suggestedLocation = model
-        showLocationOnMap(latitude: model.lat ?? "", longitude: model.lon ?? "")
+        //showLocationOnMap(latitude: model.lat ?? "", longitude: model.lon ?? "")
+        detailsLabel.text = model.name
+        startAnimatingViews(.animateIn)
+        showLocationOnMap(latitude: "29.954873", longitude: "30.927861")
     }
     
     func showError(_ error: String) {
@@ -145,6 +229,7 @@ extension SuggestLocationViewController : SuggestLocationViewProtocol {
     }
     
     func showProgress(_ show: Bool) {
+        showLottieAnimation(show)
     }
 }
 

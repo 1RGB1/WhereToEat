@@ -9,5 +9,6 @@ target 'WhereToEat' do
   pod 'Alamofire'
   pod 'ObjectMapper'
   pod 'lottie-ios'
+  pod 'SnapKit'
 
 end
