@@ -17,3 +17,5 @@ let GET: HTTPMethod = HTTPMethod.get
 
 // Others
 let FAILED: String = "Failed"
+let ERROR: String = "Error"
+let ACCESSDENIED: String = "Access to your location is needed"

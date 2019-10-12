@@ -29,12 +29,24 @@ class SuggestLocationViewController : UIViewController {
         checkLocationServices()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
     // MARK: Functions: - Locals
     func checkLocationServices() {
         if CLLocationManager.locationServicesEnabled() {
             checkLocationAuthorization()
         } else {
-            Utilities.showAlertForView(self, title: "Error", message: "Access to your location is needed")
+            Utilities.showAlertForView(self, title: ERROR, message: ACCESSDENIED)
         }
     }
     
@@ -44,24 +56,22 @@ class SuggestLocationViewController : UIViewController {
             
             case .authorizedAlways, .authorizedWhenInUse:
                 locationManager.delegate = self
-//                mapView.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyBest
                 locationManager.startUpdatingLocation()
                 mapView.showsUserLocation = true
             break
             
             case .denied:
-                Utilities.showAlertForView(self, title: "Error", message: "Access to your location is needed")
+                Utilities.showAlertForView(self, title: ERROR, message: ACCESSDENIED)
             break
             
             case .restricted:
-                Utilities.showAlertForView(self, title: "Error", message: "Access to your location is needed")
+                Utilities.showAlertForView(self, title: ERROR, message: ACCESSDENIED)
             break
             
             case .notDetermined:
                 locationManager.requestWhenInUseAuthorization()
                 locationManager.delegate = self
-//                mapView.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyBest
                 locationManager.startUpdatingLocation()
                 mapView.showsUserLocation = true
@@ -78,7 +88,7 @@ class SuggestLocationViewController : UIViewController {
             let coordinateRegion = MKCoordinateRegion(center: location, latitudinalMeters: 2000, longitudinalMeters: 2000)
             mapView.setRegion(coordinateRegion, animated: true)
         } else {
-            // TODO: Show error
+            Utilities.showAlertForView(self, withError: "Unknown location\nLatitude: \(latitude)\nLongitude: \(longitude)")
         }
     }
     
@@ -94,7 +104,7 @@ class SuggestLocationViewController : UIViewController {
             location1.coordinate.longitude = userLongitude
             fitAll(location1: location1, location2: annotations)
         } else {
-            // TODO: Show error
+            Utilities.showAlertForView(self, withError: "Unknown location\nLatitude: \(latitude)\nLongitude: \(longitude)")
         }
     }
     
@@ -131,6 +141,7 @@ extension SuggestLocationViewController : SuggestLocationViewProtocol {
     }
     
     func showError(_ error: String) {
+        Utilities.showAlertForView(self, withError: error)
     }
     
     func showProgress(_ show: Bool) {

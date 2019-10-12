@@ -25,4 +25,13 @@ class Utilities {
         
         view.present(alertController, animated: true, completion: nil)
     }
+    
+    static func showAlertForView(_ view: UIViewController, withError errorMsg: String) {
+        let alertController = UIAlertController(title: "Error", message: errorMsg, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        
+        alertController.addAction(okAction)
+        
+        view.present(alertController, animated: true, completion: nil)
+    }
 }
