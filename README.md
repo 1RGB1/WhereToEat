@@ -4,8 +4,8 @@ For sudying purposes
 
 ## Overview
 
-This is an App to suggest a place for you aound your location
+This is an App to suggest a place for you around your location
 
 ## Features
 
-*    **Suggest button: Suggests for you a place to eat in around your location**
+*    **Suggest button: Suggests for you a place around your location to eat in**
