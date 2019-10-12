@@ -82,9 +82,9 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="3gn-2e-evO" firstAttribute="top" secondItem="EeJ-Jj-As3" secondAttribute="top" constant="543" id="7Pj-Uh-0fb"/>
+                                    <constraint firstItem="3gn-2e-evO" firstAttribute="top" secondItem="8UW-Hy-uNr" secondAttribute="top" constant="499" id="7Pj-Uh-0fb"/>
                                     <constraint firstItem="3gn-2e-evO" firstAttribute="centerX" secondItem="EeJ-Jj-As3" secondAttribute="centerX" id="8KY-Bw-r87"/>
-                                    <constraint firstItem="WI6-YK-DAL" firstAttribute="top" secondItem="EeJ-Jj-As3" secondAttribute="top" constant="293" id="RMp-pg-cPe"/>
+                                    <constraint firstItem="WI6-YK-DAL" firstAttribute="top" secondItem="8UW-Hy-uNr" secondAttribute="top" constant="249" id="RMp-pg-cPe"/>
                                     <constraint firstAttribute="bottom" secondItem="WI6-YK-DAL" secondAttribute="bottom" constant="403" id="V5P-Ls-DHt"/>
                                     <constraint firstAttribute="bottom" secondItem="3gn-2e-evO" secondAttribute="bottom" constant="310" id="hBj-E7-IQL"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" id="o2d-sr-SZF"/>

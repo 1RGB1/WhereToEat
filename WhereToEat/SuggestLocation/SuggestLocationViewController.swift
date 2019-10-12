@@ -89,6 +89,9 @@ class SuggestLocationViewController : UIViewController {
     
     // MARK: Functions: - Locals
     func initUI() {
+        appNameLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.restorAppState)))
+        appImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.restorAppState)))
+        
         suggestButton.layer.cornerRadius = 20
         detailsViewHeightConstraint.constant = 0
         
@@ -116,6 +119,12 @@ class SuggestLocationViewController : UIViewController {
         lotAnimationView = LOTAnimationView(name: "ColoredDotsWaveLoading")
     }
     
+    @objc
+    func restorAppState() {
+        direction = .animateOut
+        startAnimating()
+    }
+    
     func showLottieAnimation(_ show: Bool) {
         if let animationView = lotAnimationView {
             if show {
@@ -128,7 +137,7 @@ class SuggestLocationViewController : UIViewController {
                 }
                 
                 animationView.loopAnimation = true
-                animationView.animationSpeed = 0.5
+                animationView.animationSpeed = 1.0
                 animationView.play()
                 
                 animationView.isHidden = false
@@ -244,12 +253,16 @@ class SuggestLocationViewController : UIViewController {
         
         onBoardingBottom?.isActive = direction == .animateIn ? false : true
         onBoardingViewBottomConstraint = onBoardingBottom
+        onBoardingView.isUserInteractionEnabled = direction == .animateIn ? true : false
+        appNameLabel.isUserInteractionEnabled = direction == .animateIn ? true : false
+        appImageView.isUserInteractionEnabled = direction == .animateIn ? true : false
         
         blurryBottom?.isActive = direction == .animateIn ? false : true
         blurryViewBottomConstraint = blurryBottom
         
-        blurryViewHeightConstraint.constant = direction == .animateIn ? 90 : UIScreen.main.bounds.height
-        onBoardingViewHeightConstraint.constant = direction == .animateIn ? 90 : UIScreen.main.bounds.height
+        let viewHeight: CGFloat = Utilities.isWithNotsh() ? 100 : 80
+        blurryViewHeightConstraint.constant = direction == .animateIn ? viewHeight : UIScreen.main.bounds.height
+        onBoardingViewHeightConstraint.constant = direction == .animateIn ? viewHeight : UIScreen.main.bounds.height
     }
     
     func animateButton() {
@@ -283,7 +296,7 @@ class SuggestLocationViewController : UIViewController {
     func animateImage() {
         imageTop?.isActive = direction == .animateIn ? true : false
         if direction == .animateIn {
-            imageTop?.constant = 25
+            imageTop?.constant = 0
         }
         appImageTopConstraint = imageTop
         
@@ -300,7 +313,7 @@ class SuggestLocationViewController : UIViewController {
         
         titleTop?.isActive = direction == .animateIn ? true : false
         if direction == .animateIn {
-            titleTop?.constant = 35
+            titleTop?.constant = 10
         }
         appNameLabelTopConstraint = titleTop
         
@@ -323,7 +336,6 @@ class SuggestLocationViewController : UIViewController {
 extension SuggestLocationViewController : SuggestLocationViewProtocol {
     func setRandomLocationModel(_ model: SuggestLocationEntity) {
         suggestedLocation = model
-        //showLocationOnMap(latitude: model.lat ?? "", longitude: model.lon ?? "")
         detailsLabel.text = model.name
         
         if direction == .animateOut {
@@ -331,7 +343,7 @@ extension SuggestLocationViewController : SuggestLocationViewProtocol {
             startAnimating()
         }
         
-        showLocationOnMap(latitude: "29.954873", longitude: "30.927861")
+        showLocationOnMap(latitude: model.lat ?? "", longitude: model.lon ?? "")
     }
     
     func showError(_ error: String) {

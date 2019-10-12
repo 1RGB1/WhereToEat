@@ -34,4 +34,13 @@ class Utilities {
         
         view.present(alertController, animated: true, completion: nil)
     }
+    
+    static func isWithNotsh() -> Bool {
+        switch UIScreen.main.nativeBounds.height {
+            case 1136, 1334, 2208:
+                return false
+            default:
+                return true
+            }
+    }
 }
