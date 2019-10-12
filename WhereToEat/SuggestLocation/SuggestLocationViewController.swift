@@ -24,13 +24,28 @@ class SuggestLocationViewController : UIViewController {
     @IBOutlet weak var suggestButton: UIButton!
     
     @IBOutlet weak var detailsViewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var onBoardingViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var onBoardingViewBottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var blurryViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var blurryViewBottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var appImageTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var appImageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var appImageWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var appImageBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var appImageCenterConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var appNameLabelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var appNameBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var appNameCenterConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var suggestButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var suggestButtonWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var suggestButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var suggestButtonLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var suggestButtonTrailingConstraint: NSLayoutConstraint!
     
     // MARK: - Local Variable -
     var suggestLocationPresenter: SuggestLocationPresenterProtocol?
@@ -40,6 +55,19 @@ class SuggestLocationViewController : UIViewController {
     var userLongitude: Double = 0.0
     var isCenteredForTheFirstTime = false
     var lotAnimationView: LOTAnimationView?
+    var direction: AnimationDirection = .animateOut
+    
+    var onBoardingBottom: NSLayoutConstraint?
+    
+    var blurryBottom: NSLayoutConstraint?
+    
+    var imageTop: NSLayoutConstraint?
+    var imageCenter: NSLayoutConstraint?
+    var imageBottom: NSLayoutConstraint?
+    
+    var titleTop: NSLayoutConstraint?
+    var titleCenter: NSLayoutConstraint?
+    var titleBottom: NSLayoutConstraint?
     
     // MARK: Functions: - Life Cycle -
     override func viewDidLoad() {
@@ -67,6 +95,24 @@ class SuggestLocationViewController : UIViewController {
         onBoardingView.translatesAutoresizingMaskIntoConstraints = false
         blurryView.translatesAutoresizingMaskIntoConstraints = false
         
+        onBoardingBottom = onBoardingViewBottomConstraint
+        
+        blurryBottom = blurryViewBottomConstraint
+        
+        imageTop = appImageTopConstraint
+        imageCenter = appImageCenterConstraint
+        imageBottom = appImageBottomConstraint
+        
+        titleTop = appNameLabelTopConstraint
+        titleCenter = appNameCenterConstraint
+        titleBottom = appNameBottomConstraint
+        
+        titleTop?.isActive = false
+        appNameLabelTopConstraint = titleTop
+        
+        imageTop?.isActive = false
+        appImageTopConstraint = imageTop
+        
         lotAnimationView = LOTAnimationView(name: "ColoredDotsWaveLoading")
     }
     
@@ -86,10 +132,11 @@ class SuggestLocationViewController : UIViewController {
                 animationView.play()
                 
                 animationView.isHidden = false
+                suggestButton.setAttributedTitle(nil, for: .normal)
                 suggestButton.setTitle("", for: .normal)
             } else {
                 animationView.isHidden = true
-                suggestButton.setTitle("Suggest", for: .normal)
+                suggestButton.setAttributedTitle(prepSuggestButtonAttributedTitle(), for: .normal)
             }
         }
     }
@@ -179,33 +226,91 @@ class SuggestLocationViewController : UIViewController {
         mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100), animated: true)
     }
     
-    func startAnimatingViews(_ direction: AnimationDirection) {
+    func startAnimating() {
         
-        if direction == .animateIn {
-            detailsView.isHidden = false
-            detailsViewHeightConstraint.constant = 200
-            
-            blurryViewBottomConstraint.isActive = false
-            onBoardingViewBottomConstraint.isActive = false
-            
-            UIView.animate(withDuration: 1.0) { [weak self] in
-                self?.blurryViewHeightConstraint.constant = 90
-                self?.onBoardingViewHeightConstraint.constant = 90
-                self?.view.layoutIfNeeded()
-            }
-        } else {
-            detailsView.isHidden = true
-            detailsViewHeightConstraint.constant = 0
-            
-            blurryViewBottomConstraint.isActive = true
-            onBoardingViewBottomConstraint.isActive = true
-            
-            UIView.animate(withDuration: 1.0) { [weak self] in
-                self?.blurryViewHeightConstraint.constant = UIScreen.main.bounds.height
-                self?.onBoardingViewHeightConstraint.constant = UIScreen.main.bounds.height
-                self?.view.layoutIfNeeded()
-            }
+        animateViews()
+        animateButton()
+        animateImage()
+        animateTitle()
+        
+        UIView.animate(withDuration: ANIMATION_TIME) { [weak self] in
+            self?.view.layoutIfNeeded()
         }
+    }
+    
+    func animateViews() {
+        detailsView.isHidden = direction == .animateIn ? false : true
+        detailsViewHeightConstraint.constant = direction == .animateIn ? 200 : 0
+        
+        onBoardingBottom?.isActive = direction == .animateIn ? false : true
+        onBoardingViewBottomConstraint = onBoardingBottom
+        
+        blurryBottom?.isActive = direction == .animateIn ? false : true
+        blurryViewBottomConstraint = blurryBottom
+        
+        blurryViewHeightConstraint.constant = direction == .animateIn ? 90 : UIScreen.main.bounds.height
+        onBoardingViewHeightConstraint.constant = direction == .animateIn ? 90 : UIScreen.main.bounds.height
+    }
+    
+    func animateButton() {
+        suggestButtonHeightConstraint.constant = direction == .animateIn ? 40 : 60
+        suggestButtonWidthConstraint.constant = direction == .animateIn ? 200 : 314
+        suggestButtonBottomConstraint.constant = direction == .animateIn ? 50 : 100
+        suggestButtonLeadingConstraint.constant = direction == .animateIn ? 107 : 50
+        suggestButtonTrailingConstraint.constant = direction == .animateIn ? 107 : 50
+        
+        suggestButton.setAttributedTitle(prepSuggestButtonAttributedTitle(), for: .normal)
+    }
+    
+    func prepSuggestButtonAttributedTitle() -> NSAttributedString {
+        
+        let fontSize: CGFloat = direction == .animateIn ? 20 : 30
+        let fontColor = direction == .animateIn ? UIColor.white : UIColor(red: 29/255, green: 115/255, blue: 209/255, alpha: 1)
+        let backgroundColor = direction == .animateIn ? UIColor(red: 29/255, green: 115/255, blue: 209/255, alpha: 1) : UIColor.white
+        
+        suggestButton.backgroundColor = backgroundColor
+        
+        let font: [NSAttributedString.Key : Any]? = [NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Regular", size: fontSize)!,
+                                                     NSAttributedString.Key.foregroundColor: fontColor]
+        let attrText = NSMutableAttributedString(string: "Suggest", attributes: font)
+        let mutableAttributedString = NSMutableAttributedString()
+        
+        mutableAttributedString.append(attrText)
+        
+        return mutableAttributedString
+    }
+    
+    func animateImage() {
+        imageTop?.isActive = direction == .animateIn ? true : false
+        if direction == .animateIn {
+            imageTop?.constant = 25
+        }
+        appImageTopConstraint = imageTop
+        
+        imageBottom?.isActive = direction == .animateIn ? false : true
+        appImageBottomConstraint = imageBottom
+        
+        appImageCenterConstraint.constant = direction == .animateIn ? imageCenter!.constant - 65 : imageCenter!.constant + 65
+        
+        appImageHeightConstraint.constant = direction == .animateIn ? 50 : 200
+        appImageWidthConstraint.constant = direction == .animateIn ? 50 : 200
+    }
+    
+    func animateTitle() {
+        
+        titleTop?.isActive = direction == .animateIn ? true : false
+        if direction == .animateIn {
+            titleTop?.constant = 35
+        }
+        appNameLabelTopConstraint = titleTop
+        
+        titleBottom?.isActive = direction == .animateIn ? false : true
+        appNameBottomConstraint = titleBottom
+        
+        appNameCenterConstraint.constant = direction == .animateIn ? titleCenter!.constant + 45 : titleCenter!.constant - 45
+        
+        let fontSize: CGFloat = direction == .animateIn ? 24 : 34
+        appNameLabel.font = UIFont(name: "ChalkboardSE-Regular", size: fontSize)
     }
     
     // MARK: Functions: - Outlets -
@@ -220,7 +325,12 @@ extension SuggestLocationViewController : SuggestLocationViewProtocol {
         suggestedLocation = model
         //showLocationOnMap(latitude: model.lat ?? "", longitude: model.lon ?? "")
         detailsLabel.text = model.name
-        startAnimatingViews(.animateIn)
+        
+        if direction == .animateOut {
+            direction = .animateIn
+            startAnimating()
+        }
+        
         showLocationOnMap(latitude: "29.954873", longitude: "30.927861")
     }
     

@@ -19,8 +19,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qt1-DK-PJx">
-                                        <rect key="frame" x="20" y="65" width="374" height="85"/>
-                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="18"/>
+                                        <rect key="frame" x="20" y="80" width="374" height="70"/>
+                                        <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -48,7 +48,7 @@
                                     <constraint firstItem="FGB-zG-CSZ" firstAttribute="centerX" secondItem="zhM-Qy-rsE" secondAttribute="centerX" id="H0D-AV-KVT"/>
                                     <constraint firstAttribute="trailing" secondItem="qt1-DK-PJx" secondAttribute="trailing" constant="20" id="ePd-C2-Z1b"/>
                                     <constraint firstAttribute="height" constant="200" id="eVt-i6-mkI"/>
-                                    <constraint firstItem="qt1-DK-PJx" firstAttribute="top" secondItem="zhM-Qy-rsE" secondAttribute="top" constant="65" id="lXb-a4-3y7"/>
+                                    <constraint firstItem="qt1-DK-PJx" firstAttribute="top" secondItem="zhM-Qy-rsE" secondAttribute="top" constant="80" id="lXb-a4-3y7"/>
                                     <constraint firstAttribute="bottom" secondItem="FGB-zG-CSZ" secondAttribute="bottom" constant="15" id="qJx-Qc-WWf"/>
                                     <constraint firstItem="qt1-DK-PJx" firstAttribute="leading" secondItem="zhM-Qy-rsE" secondAttribute="leading" constant="20" id="qXH-1C-XZZ"/>
                                 </constraints>
@@ -82,22 +82,26 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="3gn-2e-evO" firstAttribute="top" secondItem="EeJ-Jj-As3" secondAttribute="top" constant="543" id="7Pj-Uh-0fb"/>
                                     <constraint firstItem="3gn-2e-evO" firstAttribute="centerX" secondItem="EeJ-Jj-As3" secondAttribute="centerX" id="8KY-Bw-r87"/>
-                                    <constraint firstItem="3gn-2e-evO" firstAttribute="top" secondItem="WI6-YK-DAL" secondAttribute="bottom" constant="50" id="eRL-9h-lTw"/>
-                                    <constraint firstAttribute="bottom" secondItem="3gn-2e-evO" secondAttribute="bottom" constant="310" id="hgV-dl-xbU"/>
+                                    <constraint firstItem="WI6-YK-DAL" firstAttribute="top" secondItem="EeJ-Jj-As3" secondAttribute="top" constant="293" id="RMp-pg-cPe"/>
+                                    <constraint firstAttribute="bottom" secondItem="WI6-YK-DAL" secondAttribute="bottom" constant="403" id="V5P-Ls-DHt"/>
+                                    <constraint firstAttribute="bottom" secondItem="3gn-2e-evO" secondAttribute="bottom" constant="310" id="hBj-E7-IQL"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" id="o2d-sr-SZF"/>
                                     <constraint firstItem="WI6-YK-DAL" firstAttribute="centerX" secondItem="EeJ-Jj-As3" secondAttribute="centerX" id="y5V-rd-PbK"/>
                                 </constraints>
+                                <viewLayoutGuide key="safeArea" id="8UW-Hy-uNr"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhj-Bq-cxb">
                                 <rect key="frame" x="50" y="702" width="314" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="c3k-9a-QfI"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" id="rmA-zf-WQr"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="30"/>
                                 <state key="normal" title="Suggest">
-                                    <color key="titleColor" red="0.075288303196430206" green="0.44100230932235718" blue="0.83143830299377441" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.075288258492946625" green="0.4410022497177124" blue="0.83143830299377441" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="suggetLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cef-tm-tkf"/>
@@ -128,10 +132,16 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="appImageBottomConstraint" destination="V5P-Ls-DHt" id="Ou2-z5-AE6"/>
+                        <outlet property="appImageCenterConstraint" destination="y5V-rd-PbK" id="Meg-H2-fsI"/>
                         <outlet property="appImageHeightConstraint" destination="lDz-BA-FsR" id="Hrx-N7-vmq"/>
+                        <outlet property="appImageTopConstraint" destination="RMp-pg-cPe" id="DvD-av-mQ4"/>
                         <outlet property="appImageView" destination="WI6-YK-DAL" id="ou7-4J-l7U"/>
                         <outlet property="appImageWidthConstraint" destination="SiP-jx-48n" id="Oie-ia-MWS"/>
+                        <outlet property="appNameBottomConstraint" destination="hBj-E7-IQL" id="Wdu-Ru-RSJ"/>
+                        <outlet property="appNameCenterConstraint" destination="8KY-Bw-r87" id="6dL-II-QqS"/>
                         <outlet property="appNameLabel" destination="3gn-2e-evO" id="mZI-gY-Ug1"/>
+                        <outlet property="appNameLabelTopConstraint" destination="7Pj-Uh-0fb" id="qwy-Lz-SxH"/>
                         <outlet property="blurryView" destination="kkN-AB-UGQ" id="ZHm-S0-s1z"/>
                         <outlet property="blurryViewBottomConstraint" destination="gci-TI-jXx" id="CPn-AC-hZ6"/>
                         <outlet property="blurryViewHeightConstraint" destination="u4S-aU-wuI" id="QZz-bZ-3AY"/>
@@ -143,6 +153,11 @@
                         <outlet property="onBoardingViewBottomConstraint" destination="ueR-pC-owe" id="TTo-4w-sYJ"/>
                         <outlet property="onBoardingViewHeightConstraint" destination="o2d-sr-SZF" id="MCG-XY-CX9"/>
                         <outlet property="suggestButton" destination="Mhj-Bq-cxb" id="dyz-La-bFR"/>
+                        <outlet property="suggestButtonBottomConstraint" destination="G7W-DB-bgS" id="Yk9-nG-9WT"/>
+                        <outlet property="suggestButtonHeightConstraint" destination="c3k-9a-QfI" id="0WJ-Q8-gli"/>
+                        <outlet property="suggestButtonLeadingConstraint" destination="mwQ-r1-sKl" id="Abo-nj-7qK"/>
+                        <outlet property="suggestButtonTrailingConstraint" destination="WaS-2c-d7h" id="UBt-6m-HJI"/>
+                        <outlet property="suggestButtonWidthConstraint" destination="rmA-zf-WQr" id="2QV-fF-61e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

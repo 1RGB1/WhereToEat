@@ -19,6 +19,7 @@ let GET: HTTPMethod = HTTPMethod.get
 let FAILED: String = "Failed"
 let ERROR: String = "Error"
 let ACCESS_DENIED: String = "Access to your location is needed"
+let ANIMATION_TIME = 0.75
 
 enum AnimationDirection {
     case animateIn
