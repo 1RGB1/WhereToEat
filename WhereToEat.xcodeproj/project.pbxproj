@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2955FDCECB7F5083F04442EB /* Pods_WhereToEat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B49EC6058C937D091FBFA65 /* Pods_WhereToEat.framework */; };
 		E031A57A234F4B3800061B41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A579234F4B3800061B41 /* AppDelegate.swift */; };
-		E031A57C234F4B3800061B41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A57B234F4B3800061B41 /* SceneDelegate.swift */; };
 		E031A57E234F4B3800061B41 /* SuggestLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E031A57D234F4B3800061B41 /* SuggestLocationViewController.swift */; };
 		E031A581234F4B3800061B41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E031A57F234F4B3800061B41 /* Main.storyboard */; };
 		E031A583234F4B3900061B41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E031A582234F4B3900061B41 /* Assets.xcassets */; };
@@ -29,9 +28,8 @@
 		3B49EC6058C937D091FBFA65 /* Pods_WhereToEat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WhereToEat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1A1F0E3032A6C26ADDB90A1 /* Pods-WhereToEat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereToEat.release.xcconfig"; path = "Pods/Target Support Files/Pods-WhereToEat/Pods-WhereToEat.release.xcconfig"; sourceTree = "<group>"; };
 		DBE1C1B809C7A8D54C2B29D3 /* Pods-WhereToEat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WhereToEat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-WhereToEat/Pods-WhereToEat.debug.xcconfig"; sourceTree = "<group>"; };
-		E031A576234F4B3800061B41 /* WhereToEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhereToEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E031A576234F4B3800061B41 /* Where To Eat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Where To Eat.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E031A579234F4B3800061B41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E031A57B234F4B3800061B41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E031A57D234F4B3800061B41 /* SuggestLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestLocationViewController.swift; sourceTree = "<group>"; };
 		E031A580234F4B3800061B41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E031A582234F4B3900061B41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -96,7 +94,7 @@
 		E031A577234F4B3800061B41 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E031A576234F4B3800061B41 /* WhereToEat.app */,
+				E031A576234F4B3800061B41 /* Where To Eat.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,7 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				E031A579234F4B3800061B41 /* AppDelegate.swift */,
-				E031A57B234F4B3800061B41 /* SceneDelegate.swift */,
 				E031A587234F4B3900061B41 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -183,7 +180,7 @@
 			);
 			name = WhereToEat;
 			productName = WhereToEat;
-			productReference = E031A576234F4B3800061B41 /* WhereToEat.app */;
+			productReference = E031A576234F4B3800061B41 /* Where To Eat.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -289,7 +286,6 @@
 				E031A5A7234F669600061B41 /* SuggestLocationInteractor.swift in Sources */,
 				E031A57A234F4B3800061B41 /* AppDelegate.swift in Sources */,
 				E031A5AB234F66C600061B41 /* SuggestLocationProtocol.swift in Sources */,
-				E031A57C234F4B3800061B41 /* SceneDelegate.swift in Sources */,
 				E031A5A9234F66BB00061B41 /* SuggestLocationEntity.swift in Sources */,
 				E031A594234F62D700061B41 /* Constants.swift in Sources */,
 			);
@@ -446,9 +442,9 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AhmadApps.WhereToEat;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Where To Eat";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -467,9 +463,9 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.AhmadApps.WhereToEat;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Where To Eat";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

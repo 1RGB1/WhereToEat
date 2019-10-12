@@ -20,6 +20,7 @@ class SuggestLocationViewController : UIViewController {
     let locationManager = CLLocationManager()
     var userLatitude: Double = 0.0
     var userLongitude: Double = 0.0
+    var isCenteredForTheFirstTime = false
     
     // MARK: Functions: - Life Cycle -
     override func viewDidLoad() {
@@ -43,6 +44,7 @@ class SuggestLocationViewController : UIViewController {
             
             case .authorizedAlways, .authorizedWhenInUse:
                 locationManager.delegate = self
+//                mapView.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyBest
                 locationManager.startUpdatingLocation()
                 mapView.showsUserLocation = true
@@ -59,6 +61,7 @@ class SuggestLocationViewController : UIViewController {
             case .notDetermined:
                 locationManager.requestWhenInUseAuthorization()
                 locationManager.delegate = self
+//                mapView.delegate = self
                 locationManager.desiredAccuracy = kCLLocationAccuracyBest
                 locationManager.startUpdatingLocation()
                 mapView.showsUserLocation = true
@@ -81,12 +84,37 @@ class SuggestLocationViewController : UIViewController {
     
     func showLocationOnMap(latitude: String, longitude: String) {
         if let doubleLatitude = Double(latitude), let DoubleLongitude = Double(longitude) {
+            mapView.removeAnnotations(mapView.annotations)
             let annotations = MKPointAnnotation()
             annotations.coordinate = CLLocationCoordinate2D(latitude: doubleLatitude, longitude: DoubleLongitude)
             mapView.addAnnotation(annotations)
+            
+            let location1 = MKPointAnnotation()
+            location1.coordinate.latitude = userLatitude
+            location1.coordinate.longitude = userLongitude
+            fitAll(location1: location1, location2: annotations)
         } else {
             // TODO: Show error
         }
+    }
+    
+    func fitAll(location1: MKAnnotation, location2: MKAnnotation) {
+        var zoomRect: MKMapRect = MKMapRect.null
+
+        let annotations = [location1, location2]
+        
+        for annotation in annotations {
+            let aPoint = MKMapPoint(annotation.coordinate)
+            let rect = MKMapRect(x: aPoint.x, y: aPoint.y, width: 0.1, height: 0.1)
+
+            if zoomRect.isNull {
+                zoomRect = rect
+            } else {
+                zoomRect = zoomRect.union(rect)
+            }
+        }
+        
+        mapView.setVisibleMapRect(zoomRect, edgePadding: UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100), animated: true)
     }
     
     // MARK: Functions: - Outlets -
@@ -109,11 +137,16 @@ extension SuggestLocationViewController : SuggestLocationViewProtocol {
     }
 }
 
-// MARK: Extension - MapKit -
+// MARK: Extension - Location Delegate -
 extension SuggestLocationViewController : CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
-        centerMapOnLocation(latitude: "\(location.latitude)", longitude: "\(location.longitude)")
+        
+        if !isCenteredForTheFirstTime {
+            centerMapOnLocation(latitude: "\(location.latitude)", longitude: "\(location.longitude)")
+            isCenteredForTheFirstTime = true
+        }
+        
         userLatitude = location.latitude
         userLongitude = location.longitude
     }

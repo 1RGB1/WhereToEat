@@ -20,7 +20,7 @@ extension SuggestLocationPresenter : SuggestLocationPresenterProtocol {
 
         view?.showProgress(true)
         
-        let params: [String : AnyHashable] = ["uid" : "\(latitude),\(longitude)",
+        let params: [String : AnyHashable] = ["uid" : "\(longitude),\(latitude)",
                                               "g et_param" : "value"]
         
         interactor?.getRandomLocationWithParameters(params, andCompletionBlock: { [weak self] (responseModel, error) in
