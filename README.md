@@ -1,4 +1,4 @@
-# WhereToEat
+# Where To Eat
 
 For sudying purposes
 
