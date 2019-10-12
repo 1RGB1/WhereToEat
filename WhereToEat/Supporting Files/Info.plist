@@ -60,5 +60,11 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Where To Eat app needs your permission to accesss your location to suggest great places for you to eat</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Where To Eat app needs your permission to accesss your location to suggest great places for you to eat</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Where To Eat app needs your permission to accesss your location to suggest great places for you to eat</string>
 </dict>
 </plist>

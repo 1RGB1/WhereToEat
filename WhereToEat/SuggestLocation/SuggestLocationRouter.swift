@@ -18,7 +18,7 @@ class SuggestLocationRouter {
 extension SuggestLocationRouter : SuggestLocationRouterProtocol {
     static func createSuggestLocationModule() -> SuggestLocationViewController {
         
-        let view = SuggestLocationRouter.mainStoryboard.instantiateViewController(identifier: "SuggestLocationViewController") as! SuggestLocationViewController
+        let view = mainStoryboard.instantiateViewController(withIdentifier: "SuggestLocationViewController") as! SuggestLocationViewController
         
         let presenter = SuggestLocationPresenter()
         let interactor = SuggestLocationInteractor()
@@ -26,8 +26,8 @@ extension SuggestLocationRouter : SuggestLocationRouterProtocol {
         
         view.suggestLocationPresenter = presenter
         presenter.view = view
-        presenter.interactor = interactor
         presenter.router = router
+        presenter.interactor = interactor
         
         return view
     }
