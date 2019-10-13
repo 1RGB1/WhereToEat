@@ -24,6 +24,7 @@ class SuggestLocationViewController : UIViewController {
     @IBOutlet weak var suggestButton: UIButton!
     
     @IBOutlet weak var detailsViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var detailsLabelTopConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var onBoardingViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var onBoardingViewBottomConstraint: NSLayoutConstraint!
@@ -263,6 +264,8 @@ class SuggestLocationViewController : UIViewController {
         let viewHeight: CGFloat = Utilities.isWithNotsh() ? 100 : 80
         blurryViewHeightConstraint.constant = direction == .animateIn ? viewHeight : UIScreen.main.bounds.height
         onBoardingViewHeightConstraint.constant = direction == .animateIn ? viewHeight : UIScreen.main.bounds.height
+        
+        detailsLabelTopConstraint.constant = viewHeight + 15
     }
     
     func animateButton() {
@@ -293,7 +296,19 @@ class SuggestLocationViewController : UIViewController {
         return mutableAttributedString
     }
     
+    func prepSuggestedPlaceName(_ name: String) -> NSAttributedString {
+        let font: [NSAttributedString.Key : Any]? = [NSAttributedString.Key.font: UIFont(name: "ChalkboardSE-Regular", size: 18)!,
+                                                     NSAttributedString.Key.foregroundColor: UIColor(red: 29/255, green: 115/255, blue: 209/255, alpha: 1)]
+        let attrText = NSMutableAttributedString(string: name, attributes: font)
+        let mutableAttributedString = NSMutableAttributedString()
+        
+        mutableAttributedString.append(attrText)
+        
+        return mutableAttributedString
+    }
+    
     func animateImage() {
+        
         imageTop?.isActive = direction == .animateIn ? true : false
         if direction == .animateIn {
             imageTop?.constant = 0
@@ -303,10 +318,13 @@ class SuggestLocationViewController : UIViewController {
         imageBottom?.isActive = direction == .animateIn ? false : true
         appImageBottomConstraint = imageBottom
         
-        appImageCenterConstraint.constant = direction == .animateIn ? imageCenter!.constant - 65 : imageCenter!.constant + 65
-        
         appImageHeightConstraint.constant = direction == .animateIn ? 50 : 200
         appImageWidthConstraint.constant = direction == .animateIn ? 50 : 200
+        
+        let screenWidth = UIScreen.main.bounds.width
+        let imagePositionFromCenter: CGFloat = (screenWidth / 4) - 15
+        
+        appImageCenterConstraint.constant = direction == .animateIn ? imageCenter!.constant - imagePositionFromCenter : imageCenter!.constant + imagePositionFromCenter
     }
     
     func animateTitle() {
@@ -320,7 +338,10 @@ class SuggestLocationViewController : UIViewController {
         titleBottom?.isActive = direction == .animateIn ? false : true
         appNameBottomConstraint = titleBottom
         
-        appNameCenterConstraint.constant = direction == .animateIn ? titleCenter!.constant + 45 : titleCenter!.constant - 45
+        let screenWidth = UIScreen.main.bounds.width
+        let titlePositionFromCenter: CGFloat = (screenWidth / 8) - 15
+        
+        appNameCenterConstraint.constant = direction == .animateIn ? titleCenter!.constant + titlePositionFromCenter : titleCenter!.constant - titlePositionFromCenter
         
         let fontSize: CGFloat = direction == .animateIn ? 24 : 34
         appNameLabel.font = UIFont(name: "ChalkboardSE-Regular", size: fontSize)
@@ -336,7 +357,8 @@ class SuggestLocationViewController : UIViewController {
 extension SuggestLocationViewController : SuggestLocationViewProtocol {
     func setRandomLocationModel(_ model: SuggestLocationEntity) {
         suggestedLocation = model
-        detailsLabel.text = model.name
+        
+        detailsLabel.attributedText = prepSuggestedPlaceName(model.name ?? "")
         
         if direction == .animateOut {
             direction = .animateIn
@@ -348,7 +370,6 @@ extension SuggestLocationViewController : SuggestLocationViewProtocol {
     
     func showError(_ error: String) {
         Utilities.showAlertForView(self, withError: error)
-        detailsLabel.text = error 
     }
     
     func showProgress(_ show: Bool) {

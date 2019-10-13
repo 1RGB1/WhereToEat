@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,7 +11,7 @@
         <!--Suggest Location View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="SuggestLocationViewController" id="BYZ-38-t0r" customClass="SuggestLocationViewController" customModule="WhereToEat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SuggestLocationViewController" id="BYZ-38-t0r" customClass="SuggestLocationViewController" customModule="Where_To_Eat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -27,13 +28,13 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="FGB-zG-CSZ">
                                         <rect key="frame" x="162" y="165" width="90" height="20"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpw-RD-u9r" userLabel="location">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vpw-RD-u9r" userLabel="places">
                                                 <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="20" id="D99-3g-evB"/>
                                                     <constraint firstAttribute="width" constant="20" id="xbD-MD-yVX"/>
                                                 </constraints>
-                                                <state key="normal" image="location"/>
+                                                <state key="normal" image="places"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocp-LP-gbK" userLabel="images">
                                                 <rect key="frame" x="70" y="0.0" width="20" height="20"/>
@@ -42,7 +43,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="FGB-zG-CSZ" firstAttribute="top" secondItem="qt1-DK-PJx" secondAttribute="bottom" constant="15" id="9HQ-cw-0OC"/>
                                     <constraint firstItem="FGB-zG-CSZ" firstAttribute="centerX" secondItem="zhM-Qy-rsE" secondAttribute="centerX" id="H0D-AV-KVT"/>
@@ -101,7 +102,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="30"/>
                                 <state key="normal" title="Suggest">
-                                    <color key="titleColor" red="0.075288258492946625" green="0.4410022497177124" blue="0.83143830299377441" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleColor" red="0.074509803921568626" green="0.4392156862745098" blue="0.83137254901960778" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="suggetLocationButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cef-tm-tkf"/>
@@ -146,6 +147,7 @@
                         <outlet property="blurryViewBottomConstraint" destination="gci-TI-jXx" id="CPn-AC-hZ6"/>
                         <outlet property="blurryViewHeightConstraint" destination="u4S-aU-wuI" id="QZz-bZ-3AY"/>
                         <outlet property="detailsLabel" destination="qt1-DK-PJx" id="sMd-Xy-Uyh"/>
+                        <outlet property="detailsLabelTopConstraint" destination="lXb-a4-3y7" id="cSw-Q0-GgM"/>
                         <outlet property="detailsView" destination="zhM-Qy-rsE" id="Zct-XH-Dv6"/>
                         <outlet property="detailsViewHeightConstraint" destination="eVt-i6-mkI" id="jex-Nj-izG"/>
                         <outlet property="mapView" destination="yL4-4f-hhG" id="rS1-Tb-ZNr"/>
@@ -168,6 +170,6 @@
     <resources>
         <image name="food" width="640" height="640"/>
         <image name="images" width="512" height="512"/>
-        <image name="location" width="112.5" height="112.5"/>
+        <image name="places" width="112.5" height="112.5"/>
     </resources>
 </document>
