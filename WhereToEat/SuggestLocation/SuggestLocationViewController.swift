@@ -348,6 +348,7 @@ extension SuggestLocationViewController : SuggestLocationViewProtocol {
     
     func showError(_ error: String) {
         Utilities.showAlertForView(self, withError: error)
+        detailsLabel.text = error 
     }
     
     func showProgress(_ show: Bool) {
